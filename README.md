@@ -18,6 +18,23 @@ This is a sophisticated proxy to teleport players between multiple minecraft ser
 
 # Developers ⚒
 
+## Maven
+Repository:
+```xml
+<repository>
+  <id>jitpack.io</id>
+  <url>https://jitpack.io</url>
+</repository>
+  ```
+Dependency:
+```xml
+<dependency>
+  <groupId>com.github.Trayzik</groupId>
+  <artifactId>TrayzProxy</artifactId>
+  <version>1.0</version>
+</dependency>
+  ```
+
 ## Plugin main
 In main class you need to add annotation with parameters: name, authors, version, description
 ```java
