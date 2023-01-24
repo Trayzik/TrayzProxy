@@ -1,0 +1,6 @@
+# Project exclude paths
+.idea/*
+/target/
+config.json
+servers.json
+messages.json
