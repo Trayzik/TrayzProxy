@@ -111,7 +111,10 @@ public class NetHandlerPlayServer implements INetHandler {
                     events.playerJoinEvent(event);
                 }
 
-                player.connectFallback();
+                if(event.isConnectLimbo())
+                    player.connectToLimbo();
+                else
+                    player.connectFallback();
             }
         }
 
