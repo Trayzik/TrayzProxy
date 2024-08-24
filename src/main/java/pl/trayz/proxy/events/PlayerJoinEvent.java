@@ -15,5 +15,6 @@ import pl.trayz.proxy.objects.player.Player;
 public class PlayerJoinEvent {
 
     private final Player player;
+    private boolean connectLimbo;
 
 }

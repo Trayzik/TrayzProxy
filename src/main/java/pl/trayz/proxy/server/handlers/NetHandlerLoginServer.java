@@ -236,9 +236,12 @@ public class NetHandlerLoginServer implements INetHandler {
         }
 
         /**
-         * Connecting player into fallback server.
+         * Connecting player into fallback server/limbo.
          */
-        player.connectFallback();
+        if(event.isConnectLimbo())
+            player.connectToLimbo();
+        else
+            player.connectFallback();
     }
 
 
