@@ -41,6 +41,7 @@ import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -159,11 +160,11 @@ public class NetHandlerLoginServer implements INetHandler {
                     pipeline.addFirst("decrypt", new NettyEncryptingDecoder(CryptUtil.createNetCipherInstance(2, sharedKey)));
                     pipeline.addFirst("encrypt", new NettyEncryptingEncoder(CryptUtil.createNetCipherInstance(1, sharedKey)));
 
-                    for (final byte[] bit : new byte[][]{serverId.getBytes("UTF-8"), sharedKey.getEncoded(), keyPair.getPublic().getEncoded()}) {
+                    for (final byte[] bit : new byte[][]{serverId.getBytes(StandardCharsets.UTF_8), sharedKey.getEncoded(), keyPair.getPublic().getEncoded()}) {
                         sha.update(bit);
                     }
 
-                    final String encodedHash = URLEncoder.encode(new BigInteger(sha.digest()).toString(16), "UTF-8");
+                    final String encodedHash = URLEncoder.encode(new BigInteger(sha.digest()).toString(16), StandardCharsets.UTF_8);
 
                     final String authURL = "https://sessionserver.mojang.com/session/minecraft/hasJoined?username=" + player.getName() + "&serverId=" + encodedHash;
                     HttpURLConnection connection = (HttpURLConnection) new URL(authURL).openConnection();
